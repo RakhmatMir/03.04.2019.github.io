@@ -111,10 +111,12 @@ $(document).ready(function(){
 	// adaptive menu header
 	$(".head-menu").on("click", function(e) {
 		e.preventDefault();
-		$(".Hih-left").addClass("Hih-left-open");
+		$(".Hih-left").addClass("Hih-left-open")
+		$(".Hih-left-bg").show();
 	});
 	$(".Hih-left-bg,.Hih-left-clouse").on("click", function() {
 		$(".Hih-left").removeClass("Hih-left-open");
+		$(".Hih-left-bg").hide();
 	});
 	// end adaptive menu header
 	// about menu
