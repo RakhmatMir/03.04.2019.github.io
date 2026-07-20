@@ -1,0 +1,53 @@
+ПОДКЛЮЧЕНИЕ СЕРВЕРА К МОБИЛЬНОМУ CURSOR
+======================================
+
+Что это даёт:
+- Сервер появится в мобильном приложении Cursor
+- Агент с телефона сможет править файлы и запускать команды на сервере
+- Входящие порты на сервере открывать НЕ нужно
+
+Требования:
+- Linux-сервер с интернетом
+- Платный план Cursor
+- Тот же аккаунт Cursor на телефоне и на сервере
+- GitHub подключён в Cursor
+
+БЫСТРЫЙ СТАРТ (на сервере по SSH)
+---------------------------------
+
+1. Подключитесь к серверу:
+   ssh user@ваш-сервер
+
+2. Скачайте и запустите установку:
+   git clone https://github.com/RakhmatMir/03.04.2019.github.io.git
+   cd 03.04.2019.github.io
+   git checkout cursor/cursor-mobile-server-setup-745b
+   bash scripts/cursor-worker/setup.sh
+
+3. При запросе войдите в Cursor (agent login).
+
+4. На телефоне:
+   - Откройте приложение Cursor
+   - Новый агент → выберите окружение "romanoff-server"
+   - Напишите задачу
+
+РУЧНОЙ ЗАПУСК (без скрипта)
+---------------------------
+
+curl https://cursor.com/install -fsS | bash
+agent login
+git clone https://github.com/RakhmatMir/03.04.2019.github.io.git ~/cursor-projects/03.04.2019.github.io
+agent worker start --name romanoff-server --worker-dir ~/cursor-projects/03.04.2019.github.io
+
+ПРОВЕРКА
+--------
+
+agent worker start --debug --name romanoff-server --worker-dir ~/cursor-projects/03.04.2019.github.io
+
+Если всё ок — машина появится на cursor.com/agents в выпадающем списке окружений.
+
+ССЫЛКИ
+------
+
+My Machines: https://cursor.com/docs/cloud-agent/my-machines
+Мобильное приложение: https://cursor.com/docs/cloud-agent/mobile
